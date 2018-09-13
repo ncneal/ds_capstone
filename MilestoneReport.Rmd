@@ -1,41 +1,49 @@
 ---
-title: 'Coursera Data Science Capstone: Milestone Report'
-author: "Pradeep K. Pant, ppant@cpan.org"
-date: "September 4, 2016"
+title: 'Data Science Specialization Capstone: Milestone Report'
+author: "Nick Neal"
+date: "January 15, 2018"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-## Synopsis
+## Abstract
 
-This is the Milestone Report for the Coursera Data Science Capstone project. The goal of the capstone project is to create a predictive text model using a large text corpus of documents as training data. Natural language processing techniques will be used to perform the analysis and build the predictive model.
+Using a corpus of a text documents, the goal of this project is to build a predictive text model and data product. 
 
-This milestone report describes the major features of the training data with our exploratory data analysis and summarizes our plans for creating the predictive model.
+This milestone report describes methods for exploring the providede training data, summarizes findings of the methods used and describes plans to move the project forward.
 
-## Getting the data
+## Sections (in order of execution)
+
+ * Download : download data into local working directory
+ * Import : read data from files
+ * Data summary statistics : summarize data features
+ * Prepare :
+ * Data exploration :
+
+## Download
 
 ```{r }
 
-## Load CRAN modules 
+## Load libaries
 library(downloader)
-library(plyr);
+library(plyr)
 library(dplyr)
 library(knitr)
 library(tm)
 
-## Step 1: Download the dataset and unzip folder
-## Check if directory already exists?
-if(!file.exists("./projectData")){
-  dir.create("./projectData")
+## 1. Download data into local working directory
+## Create a directory for project data, if necessary
+if(!file.exists("./data")){
+  dir.create("./data")
 }
-Url <- "https://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip"
-## Check if zip has already been downloaded in projectData directory?
+url <- "https://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip"
+## Download the data, if necessary
 if(!file.exists("./projectData/Coursera-SwiftKey.zip")){
   download.file(Url,destfile="./projectData/Coursera-SwiftKey.zip",mode = "wb")
 }
-## Check if zip has already been unzipped?
+## Unzip download, if necessary
 if(!file.exists("./projectData/final")){
   unzip(zipfile="./projectData/Coursera-SwiftKey.zip",exdir="./projectData")
 }

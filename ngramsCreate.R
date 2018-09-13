@@ -13,17 +13,18 @@ options(mc.cores=1)
 
 ## Step 1: Download the dataset and unzip folder
 ## Check if directory already exists?
-if(!file.exists("./projectData")){
-  dir.create("./projectData")
+if(!file.exists("./data")){
+  dir.create("./data")
 }
-Url <- "https://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip"
+url <- "https://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip"
 ## Check if zip has already been downloaded in projectData directory?
-if(!file.exists("./projectData/Coursera-SwiftKey.zip")){
-  download.file(Url,destfile="./projectData/Coursera-SwiftKey.zip",mode = "wb")
+if(!file.exists("./data/Coursera-SwiftKey.zip")){
+  download.file(url,destfile="./data/Coursera-SwiftKey.zip")
 }
+
 ## Check if zip has already been unzipped?
-if(!file.exists("./projectData/final")){
-  unzip(zipfile="./projectData/Coursera-SwiftKey.zip",exdir="./projectData")
+if(!file.exists("./data/final")){
+  unzip(zipfile="./data/Coursera-SwiftKey.zip",exdir="./data")
 }
 # Once the dataset is downloaded start reading it as this a huge dataset so we'll read line by line only the amount of data needed before doing that lets first list all the files in the directory
 path <- file.path("./projectData/final" , "en_US")
